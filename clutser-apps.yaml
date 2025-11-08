@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-apps
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:iuliansafta/iulian-cloud-gitops.git
+    targetRevision: HEAD
+    path: clusters/homelab-1
+  destination:
+    server: https://kubernetes.default.svc
+syncPolicy:
+  syncOptions:
+    - PruneLast=true
