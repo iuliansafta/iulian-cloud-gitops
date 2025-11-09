@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: uptime-kuma-pvc
 spec:
-  storageClassName: openebs-hostpath
+  storageClassName: openebs-single-replica
   accessModes:
     - ReadWriteOnce
   resources:
