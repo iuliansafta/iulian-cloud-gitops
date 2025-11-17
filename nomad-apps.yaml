@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: nomad-apps
+  namespace: argocd
 spec:
   project: default
   source:
@@ -10,6 +11,3 @@ spec:
     path: clusters/nomad
   destination:
     server: https://kubernetes.default.svc
-syncPolicy:
-  syncOptions:
-    - PruneLast=true
