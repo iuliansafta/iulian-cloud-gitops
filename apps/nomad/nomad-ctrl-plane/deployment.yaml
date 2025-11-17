@@ -25,7 +25,7 @@ spec:
             - name: http-web
               containerPort: 50051
               protocol: TCP
-          command: ["--nomad=", "$(NOMAD_ADDR)"]
+          command: ["--nomad=$(NOMAD_ADDR)"]
           env:
             - name: NOMAD_ADDR
               valueFrom:
