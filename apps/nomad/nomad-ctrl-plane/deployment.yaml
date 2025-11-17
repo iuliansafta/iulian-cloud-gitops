@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nomad-ctrl-plane
+  labels:
+    app: nomad-ctrl-plane
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nomad-ctrl-plane
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: nomad-ctrl-plane
+        version: v1
+    spec:
+      containers:
+        - name: nomad-ctrl-plane
+          image: ghcr.io/iuliansafta/control-plane:main
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-web
+              containerPort: 50051
+              protocol: TCP
