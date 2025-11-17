@@ -22,7 +22,7 @@ spec:
           image: ghcr.io/iuliansafta/control-plane:main
           imagePullPolicy: IfNotPresent
           ports:
-            - name: http-web
+            - name: grpc
               containerPort: 50051
               protocol: TCP
           args: ["--nomad=$(NOMAD_ADDR)"]
@@ -32,3 +32,10 @@ spec:
                 configMapKeyRef:
                   name: nomad-ctrl-plane-config
                   key: SERVER_ADDR
+          readinessProbe:
+            failureThreshold: 2
+            grpc:
+              port: 50051
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1

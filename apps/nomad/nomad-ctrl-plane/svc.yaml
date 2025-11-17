@@ -4,8 +4,9 @@ metadata:
   name: nomad-ctrl-plane-svc
 spec:
   ports:
-    - name: http-web
-      protocol: TCP
+    - name: grpc
       port: 50051
+      appProtocol: kubernetes.io/h2c
+      targetPort: grpc
   selector:
     app: nomad-ctrl-plane
