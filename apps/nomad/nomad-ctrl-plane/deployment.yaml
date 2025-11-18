@@ -4,18 +4,18 @@ metadata:
   name: nomad-ctrl-plane
   labels:
     app: nomad-ctrl-plane
-    version: v1
+    app.kubernetes.io/name: nomad-ctrl-plane
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: nomad-ctrl-plane
-      version: v1
+      app.kubernetes.io/name: nomad-ctrl-plane
   template:
     metadata:
       labels:
         app: nomad-ctrl-plane
-        version: v1
+        app.kubernetes.io/name: nomad-ctrl-plane
     spec:
       containers:
         - name: nomad-ctrl-plane
@@ -24,7 +24,6 @@ spec:
           ports:
             - name: grpc
               containerPort: 50051
-              protocol: TCP
           args: ["--nomad=$(NOMAD_ADDR)"]
           env:
             - name: NOMAD_ADDR

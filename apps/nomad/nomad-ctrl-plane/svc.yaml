@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: nomad-ctrl-plane-svc
 spec:
+  selector:
+    app.kubernetes.io/name: nomad-ctrl-plane
   ports:
     - name: grpc
       port: 50051
       appProtocol: kubernetes.io/h2c
       targetPort: grpc
-  selector:
-    app: nomad-ctrl-plane
