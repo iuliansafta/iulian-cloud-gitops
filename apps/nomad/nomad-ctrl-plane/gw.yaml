@@ -1,7 +1,9 @@
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: Gateway
 metadata:
-  name: tls-gateway
+  name: nomad-tls-gateway
+  annotations:
+    cert-manager.io/issuer: ca-issuer
 spec:
   gatewayClassName: cilium
   listeners:
@@ -17,11 +19,11 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
 metadata:
-  name: grpc-route
+  name: nomad-grpc-route
 spec:
   parentRefs:
-    - name: tls-gateway
+    - name: nomad-tls-gateway
   rules:
     - backendRefs:
-        - name: grpc-echo
+        - name: nomad-ctrl-plane-svc
           port: 50051
