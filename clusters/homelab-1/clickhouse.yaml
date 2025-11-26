@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clickhouse
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://clickhouse-charts.clickhouse.com
+    chart: clickhouse
+    targetRevision: 1.3.0
+    helm:
+      values: |
+        clickhouse:
+          replicas: 1
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
+        persistence:
+          enabled: true
+          size: 50Gi
+          storageClassName: longhorn
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: clickhouse
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
