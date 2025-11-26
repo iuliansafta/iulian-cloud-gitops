@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://hyperdxio.github.io/helm-charts
     chart: clickstack
-    targetRevision: 1.3.0
+    targetRevision: latest
     helm:
       values: |
         clickhouse:
