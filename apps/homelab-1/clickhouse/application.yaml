@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clickhouse
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://hyperdxio.github.io/helm-charts
+    chart: clickstack
+    targetRevision: 1.0.0
+    helm:
+      values: |
+        global:
+          storageClassName: longhorn
+        clickhouse:
+          replicas: 1
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
+        persistence:
+          enabled: true
+          size: 50Gi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: clickhouse
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

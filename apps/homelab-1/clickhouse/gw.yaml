@@ -1,0 +1,18 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: clickhouse-gateway
+  namespace: clickhouse
+  annotations:
+    cert-manager.io/issuer: ca-issuer
+spec:
+  gatewayClassName: cilium
+  listeners:
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: clickhouse.iulian.cld
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: clickhouse-tls-cert
