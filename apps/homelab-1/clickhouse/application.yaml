@@ -22,6 +22,8 @@ spec:
             limits:
               memory: "4Gi"
               cpu: "2"
+        hyperdx:
+          frontendUrl: https://clickhouse.iulian.cld
         persistence:
           enabled: true
           size: 50Gi
