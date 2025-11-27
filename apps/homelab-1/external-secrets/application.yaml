@@ -4,6 +4,7 @@ metadata:
   name: external-secrets-app
   namespace: argocd
 spec:
+  project: default
   source:
     repoURL: https://charts.external-secrets.io
     chart: external-secrets
