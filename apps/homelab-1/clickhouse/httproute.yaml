@@ -10,6 +10,19 @@ spec:
     - matches:
         - path:
             type: PathPrefix
+            value: /v1/traces
+        - path:
+            type: PathPrefix
+            value: /v1/metrics
+        - path:
+            type: PathPrefix
+            value: /v1/logs
+      backendRefs:
+        - name: clickhouse-clickstack-otel-collector
+          port: 4318
+    - matches:
+        - path:
+            type: PathPrefix
             value: /
       backendRefs:
         - name: clickhouse-clickstack-app
