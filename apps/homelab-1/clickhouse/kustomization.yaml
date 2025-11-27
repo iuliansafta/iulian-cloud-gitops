@@ -7,17 +7,16 @@ resources:
   - httproute.yaml
   - otel-config-vars.yaml
   - hyperdx-secret.yaml
-
-helmCharts:
-  - name: opentelemetry-collector
-    repo: https://open-telemetry.github.io/opentelemetry-helm-charts
-    version: 0.111.0
-    releaseName: k8s-otel-deployment
-    namespace: clickhouse
-    valuesFile: otel-deployment-values.yaml
-  - name: opentelemetry-collector
-    repo: https://open-telemetry.github.io/opentelemetry-helm-charts
-    version: 0.111.0
-    releaseName: k8s-otel-daemonset
-    namespace: clickhouse
-    valuesFile: otel-daemonset-values.yaml
+# helmCharts:
+#   - name: opentelemetry-collector
+#     repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+#     version: 0.111.0
+#     releaseName: k8s-otel-deployment
+#     namespace: clickhouse
+#     valuesFile: otel-deployment-values.yaml
+#   - name: opentelemetry-collector
+#     repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+#     version: 0.111.0
+#     releaseName: k8s-otel-daemonset
+#     namespace: clickhouse
+#     valuesFile: otel-daemonset-values.yaml
