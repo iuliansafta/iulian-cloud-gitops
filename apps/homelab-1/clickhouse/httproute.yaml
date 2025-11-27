@@ -7,6 +7,10 @@ spec:
   parentRefs:
     - name: clickhouse-gateway
   rules:
-    - backendRefs:
-        - name: clickhouse
-          port: 8123
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: clickhouse-clickstack-app
+          port: 3000
