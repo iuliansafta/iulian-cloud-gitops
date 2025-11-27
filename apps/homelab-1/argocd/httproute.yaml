@@ -7,10 +7,10 @@ spec:
   parentRefs:
     - name: argocd-gateway
   rules:
-    - matches:
+    - backendRefs:
+        - name: argocd-server
+          port: 80
+      matches:
         - path:
             type: PathPrefix
             value: /
-      backendRefs:
-        - name: argocd-server
-          port: 443

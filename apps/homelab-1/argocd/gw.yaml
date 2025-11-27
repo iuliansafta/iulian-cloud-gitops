@@ -12,7 +12,12 @@ spec:
       protocol: HTTPS
       port: 443
       hostname: argocd.iulian.cld
+      allowedRoutes:
+        namespaces:
+          from: All
       tls:
+        mode: Terminate
         certificateRefs:
           - kind: Secret
             name: argocd-tls-cert
+            group: ""
