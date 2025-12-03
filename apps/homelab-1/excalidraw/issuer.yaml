@@ -1,0 +1,32 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: self-signed
+  namespace: excalidraw
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ca
+  namespace: excalidraw
+spec:
+  isCA: true
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  secretName: ca
+  commonName: ca
+  issuerRef:
+    name: self-signed
+    kind: Issuer
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: ca-issuer
+  namespace: excalidraw
+spec:
+  ca:
+    secretName: ca

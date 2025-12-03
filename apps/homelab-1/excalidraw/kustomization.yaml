@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - issuer.yaml
+  - gw.yaml
+  - httproute.yaml
+helmCharts:
+  - name: excalidraw
+    repo: https://pmoscode-helm.github.io/excalidraw/
+    version: 0.1.0
+    releaseName: excalidraw
+    namespace: excalidraw
+    valuesFile: values.yaml

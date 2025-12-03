@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: excalidraw-stack
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:iuliansafta/iulian-cloud-gitops.git
+    path: apps/homelab-1/excalidraw
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

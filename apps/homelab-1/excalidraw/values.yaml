@@ -1,0 +1,77 @@
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+excalidraw:
+  hardCodedCollabServerURL: "https://oss-collab.excalidraw.com"
+  customCollabServerURL: "http://localhost:3002"
+  image:
+    repository: pmoscode/excalidraw
+    pullPolicy: IfNotPresent
+    tag: ""
+  podAnnotations: {}
+  podSecurityContext: {}
+  # fsGroup: 2000
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  service:
+    type: ClusterIP
+    port: 80
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+  ingress:
+    enabled: true
+    className: ""
+    annotations: {} # If collab server is enabled, add websocket config here...!!!
+    host: chart-example.local
+    path: /
+    type: ImplementationSpecific
+    tls: {}
+    #  secretName: chart-example-tls
+    #  host: chart-example.local
+
+collabServer:
+  enabled: false
+  image:
+    repository: pmoscode/excalidraw-collab-server
+    pullPolicy: IfNotPresent
+    tag: "1.0.0"
+  podAnnotations: {}
+  podSecurityContext: {}
+  # fsGroup: 2000
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  service:
+    type: ClusterIP
+    port: 3002
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
