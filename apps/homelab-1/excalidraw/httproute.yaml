@@ -12,5 +12,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: excalidraw-app
+        - name: excalidraw-headless
           port: 80
